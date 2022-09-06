@@ -1,5 +1,6 @@
-service: snek-functions-graphql-helix-express
+service: email
 frameworkVersion: '3'
+useDotenv: true
 
 plugins:
   - serverless-offline
@@ -11,12 +12,22 @@ custom:
     - If: '"${self:custom.isOffline}" != "true"'
       Exclude:
         - functions.endpoint.handler
+        - provider.environment.CODESPACE_NAME
       ElseExclude:
         - functions.endpoint.image
 
 provider:
   name: aws
   region: eu-central-1
+
+  environment:
+    CODESPACE_NAME: ${env:CODESPACE_NAME, ""}
+    ENDPOINT_URL_EMAIL: ${env:ENDPOINT_URL_EMAIL, ""}
+    SMTP_HOST: ${env:SMTP_HOST, ""}
+    SMTP_PORT: ${env:SMTP_PORT, ""}
+    SMTP_USER: ${env:SMTP_USER, ""}
+    SMTP_PASSWORD: ${env:SMTP_PASSWORD, ""}
+    SMTP_SENDER: ${env:SMTP_SENDER, ""}
 
   ecr:
     images:

@@ -1,8 +1,9 @@
 import {fn} from './factory'
-import {sendMail} from './internal/email.js'
 
 const send = fn<{email: string; subject: string; msg: string}, void>(
   async ({email, subject, msg}, _, req) => {
+    const {sendMail} = await import('./internal/email.js')
+
     // SMTP_HOST=smtp-relay.snek.at
     // SMTP_PORT=587
     // SMTP_USER=snekman@snek.at

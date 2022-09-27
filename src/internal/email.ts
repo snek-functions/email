@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+import inlineBase64 from 'nodemailer-plugin-inline-base64'
 import {MailOptions, SMTPOptions} from '../interfaces'
 
 // CREATE CONNECTION
@@ -27,6 +28,7 @@ async function createConnection({
 // SEND MAIL
 export async function sendMail(options: MailOptions, smtp?: SMTPOptions) {
   const con = await createConnection(smtp)
+  con.use('compile', inlineBase64({cidPrefix: 'snek_'}));
   const mail = await con.sendMail({
     from: options.from,
     to: options.to,

@@ -1,5 +1,6 @@
-import nodemailer from 'nodemailer'
+import {createTransport} from 'nodemailer'
 import inlineBase64 from 'nodemailer-plugin-inline-base64'
+
 import {MailOptions, SMTPOptions} from '../interfaces'
 
 // CREATE CONNECTION
@@ -10,11 +11,11 @@ async function createConnection({
   user,
   password
 }: SMTPOptions) {
-  return new Promise<nodemailer.createTransport>((resolve, reject) => {
+  return new Promise<ReturnType<typeof createTransport>>((resolve, reject) => {
     resolve(
-      nodemailer.createTransport({
+      createTransport({
         host: host,
-        port: port,
+        port,
         secure: secure,
         auth: {
           user: user,
@@ -26,10 +27,11 @@ async function createConnection({
 }
 
 // SEND MAIL
-export async function sendMail(options: MailOptions, smtp?: SMTPOptions) {
+export async function sendMail(options: MailOptions, smtp: SMTPOptions) {
   const con = await createConnection(smtp)
-  con.use('compile', inlineBase64({cidPrefix: 'snek_'}));
-  const mail = await con.sendMail({
+  con.use('compile', inlineBase64({cidPrefix: 'snek_'}))
+
+  const mail = (await con.sendMail({
     from: options.from,
     to: options.to,
     cc: options.cc,
@@ -37,7 +39,7 @@ export async function sendMail(options: MailOptions, smtp?: SMTPOptions) {
     subject: options.subject,
     text: options.text,
     html: options.html
-  })
+  })) as any
 
   return mail.response
 }

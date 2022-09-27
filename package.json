@@ -11,16 +11,18 @@
   "author": "snek-at",
   "dependencies": {
     "@snek-at/functions": "*",
-    "nodemailer": "^6.7.8"
+    "nodemailer": "^6.7.8",
+    "nodemailer-plugin-inline-base64": "^2.1.1"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.6",
     "nodemon": "^2.0.19",
     "serverless": "^3.19.0",
     "serverless-offline": "^9.2.6",
     "serverless-plugin-ifelse": "^1.0.7"
   },
   "scripts": {
-    "build": "sf build -f .",
+    "build": "sf build -f . --declaration",
     "start": "sf build -f . && IS_OFFLINE=true nodemon --watch dist --exec sls offline --httpPort 4040 --lambdaPort 4042",
     "deploy": "sls deploy",
     "postinstall": "sf install"

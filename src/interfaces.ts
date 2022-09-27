@@ -9,7 +9,7 @@ export interface MailOptions {
 }
 export interface SMTPOptions {
   host: string
-  port: string
+  port: number
   secure: boolean
   user: string
   password: string

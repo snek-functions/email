@@ -1,7 +1,16 @@
-import {fn} from './factory'
 import {Email} from './email/2FATemplate.js'
+import {fn} from './factory'
 
-const send2fa = fn<{email: string; subject: string; firstName: string; lastName: string; link: string}, void>(
+const send2fa = fn<
+  {
+    email: string
+    subject: string
+    firstName: string
+    lastName: string
+    link: string
+  },
+  void
+>(
   async ({email, subject, firstName, lastName, link}, _, req) => {
     const {sendMail} = await import('./internal/email.js')
 
@@ -20,7 +29,7 @@ const send2fa = fn<{email: string; subject: string; firstName: string; lastName:
       },
       {
         host: `${process.env.SMTP_HOST}`,
-        port: `${process.env.SMTP_PORT}`,
+        port: Number(`${process.env.SMTP_PORT}`),
         secure: true,
         user: `${process.env.SMTP_USER}`,
         password: `${process.env.SMTP_PASSWORD}`

@@ -1,5 +1,6 @@
-service: template
+service: email
 frameworkVersion: '3'
+useDotenv: true
 
 plugins:
   - serverless-offline
@@ -21,6 +22,12 @@ provider:
 
   environment:
     CODESPACE_NAME: ${env:CODESPACE_NAME, ""}
+    ENDPOINT_URL_EMAIL: ${env:ENDPOINT_URL_EMAIL, ""}
+    SMTP_HOST: ${env:SMTP_HOST, ""}
+    SMTP_PORT: ${env:SMTP_PORT, ""}
+    SMTP_USER: ${env:SMTP_USER, ""}
+    SMTP_PASSWORD: ${env:SMTP_PASSWORD, ""}
+    SMTP_SENDER: ${env:SMTP_SENDER, ""}
 
   ecr:
     images:

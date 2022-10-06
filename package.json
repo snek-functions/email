@@ -10,12 +10,19 @@
   ],
   "description": "Generated with `snek-functions init`",
   "author": "snek-at",
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
   "dependencies": {
     "@snek-at/functions": "*",
     "nodemailer": "^6.7.8",
     "nodemailer-plugin-inline-base64": "^2.1.1"
   },
   "devDependencies": {
+    "commitizen": "^4.2.5",
+    "git-cz": "^4.9.0",
     "@types/nodemailer": "^6.4.6",
     "nodemon": "^2.0.19",
     "serverless": "^3.19.0",

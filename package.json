@@ -1,6 +1,6 @@
 {
   "name": "@snek-functions/email",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,9 +21,9 @@
     "nodemailer-plugin-inline-base64": "^2.1.1"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.6",
     "commitizen": "^4.2.5",
     "git-cz": "^4.9.0",
-    "@types/nodemailer": "^6.4.6",
     "nodemon": "^2.0.19",
     "serverless": "^3.19.0",
     "serverless-offline": "^9.2.6",

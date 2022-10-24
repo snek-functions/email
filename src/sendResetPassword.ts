@@ -1,7 +1,7 @@
-import { Email } from './email/PasswordResetTemplate.js'
+import { Email } from './email/ResetPasswordTemplate.js'
 import { fn } from './factory'
 
-const sendPasswordReset = fn<
+const sendResetPassword = fn<
   {
     email: string
     subject: string
@@ -40,8 +40,8 @@ const sendPasswordReset = fn<
     console.log(res)
   },
   {
-    name: 'sendPasswordReset'
+    name: 'sendResetPassword'
   }
 )
 
-export default sendPasswordReset
+export default sendResetPassword

@@ -15,11 +15,6 @@
       "path": "git-cz"
     }
   },
-  "dependencies": {
-    "@snek-at/functions": "*",
-    "nodemailer": "^6.7.8",
-    "nodemailer-plugin-inline-base64": "^2.1.1"
-  },
   "devDependencies": {
     "@types/nodemailer": "^6.4.6",
     "commitizen": "^4.2.5",
@@ -31,9 +26,18 @@
   },
   "scripts": {
     "build": "sf build -f . --declaration",
-    "start": "sf build -f . && IS_OFFLINE=true nodemon --watch dist --exec sls offline --httpPort 4040 --lambdaPort 4042",
-    "deploy": "sls deploy",
-    "postinstall": "sf install"
+    "start": "sf build -f . && IS_OFFLINE=true nodemon --watch dist --exec sls offline --httpPort 4050 --lambdaPort 4052",
+    "develop": "sf develop --port 4020",
+    "deploy": "sls deploy"
   },
-  "sfDependencies": {}
+  "sfDependencies": {},
+  "dependencies": {
+    "@prisma/client": "^4.10.1",
+    "@snek-at/function": "0.0.19",
+    "@snek-at/function-builder": "0.0.19",
+    "@snek-at/function-cli": "0.0.7",
+    "@snek-at/function-server": "0.0.10",
+    "nodemailer": "^6.7.8",
+    "nodemailer-plugin-inline-base64": "^2.1.1"
+  }
 }

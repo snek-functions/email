@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]; then
   echo "Start in continuous mode" 1>&2
-  exec yarn snek-functions server -f $LAMBDA_TASK_ROOT/dist
+  exec yarn sf-server
 fi
 export _HANDLER="$1"
 
